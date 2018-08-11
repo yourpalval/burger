@@ -1,0 +1,76 @@
+<div class="container bg">
+	
+	<div class="row">
+	    <div class="center col-sm-12">
+			<img src="assets/img/red_book.jpg" alt="Read-Da-Book App">
+	        <h1>Read-Da-Book App</h1>
+	        <p></p>
+	    </div>
+  	</div>
+	<!-- end .row -->
+
+	<div class="row">
+	    <div class="col-sm-6">
+
+			<br>
+			<h2>Reading List</h2>
+
+			<ul>
+			  {{#each books}}
+			    {{#unless this.finished}}
+			      <li>
+			      	{{this.id}}
+			        {{this.book_name}}
+
+			        <form action="/{{this.id}}?_method=PUT" method="POST">
+			          <input type="hidden" name="finished" value="true">
+			          <button class="btn-primary" type="submit">Read it!</button>
+			        </form>
+
+			      </li>
+			    {{/unless}}
+			  {{/each}}
+			</ul>
+
+	    </div>
+
+	    <div class="col-sm-6">
+
+			<h2>Books That Have Been Read</h2>
+			
+			  {{#each books}}
+			    {{#if this.finished}}
+			      <li>
+			      	{{this.id}}
+			        {{this.book_name}}
+
+			      </li>
+			    {{/if}}
+			  {{/each}}
+			
+	    </div>
+
+  	</div>
+	<!-- end .row -->
+
+	<div class="row">
+	    <div class="center col-sm-12">
+
+			<h2>Add A Book!</h2>
+
+			<form class="create-update-form" action="/" method="POST">
+
+			  <div class="form-group">
+			    <p>Enter the name of the book you want to order and hit "add".</p>
+			    <input type="text" id="ca" name="book_name">
+			  </div>
+			  
+			  <button class="btn-primary" type="submit">Add to List</button>
+			</form>
+
+	    </div>
+	
+  	</div>
+	<!-- end .row -->
+
+</div>
